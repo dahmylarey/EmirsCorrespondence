@@ -1,0 +1,82 @@
+﻿@model UserViewModel
+@using EmirsCorrespondence.Data.DTO
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h1 class="text-info">Create New User</h1>
+<br />
+
+<form method="post" asp-action="Create" asp-controller="User">
+    <div class="border backgroundWhite">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Username" class="form-control" />
+            </div>
+            <div class="col-5">
+                <input asp-for="Username" class="form-control" />
+            </div>
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+
+         <div class="form-group row">
+                <div class="col-2">
+                    <label asp-for="Email" class="form-control" />
+                </div>
+                <div class="col-5">
+                    <input asp-for="Email" class="form-control" />
+                </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="PasswordHash" class="form-control" />
+            </div>
+            <div class="col-5">
+                <input asp-for="PasswordHash" class="form-control" />
+            </div>
+            <span asp-validation-for="PasswordHash" class="text-danger"></span>
+        </div>
+                       
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="RoleName" class="form-control" />
+            </div>
+            <div class="col-5">
+                <input asp-for="RoleName" class="form-control" />
+            </div>
+            <span asp-validation-for="RoleName" class="text-danger"></span>
+        </div>
+
+        <div class=" form-check">
+            <div class="col-2">
+                <label asp-for="IsActive" class="form-check-label" for="flexCheckChecked" class="form-control">
+                    Checked checkbox
+                </label> 
+            </div>
+            <div class="col-5">
+                <<input class="form-check-input" type="checkbox" asp-for="RoleName" class="form-control" />
+
+            </div>
+            <span asp-validation-for="IsActive" class="text-danger"></span>
+        </div>
+         
+
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <partial name="_CreateAndBackToListButton" />
+            </div>
+        </div>
+    </div>
+    
+</form>
+
+@* <div class="form-check"> *@
+@*     <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked> *@
+@*     <label class="form-check-label" for="flexCheckChecked"> *@
+@*         Checked checkbox *@
+@*     </label> *@
+@* </div> *@

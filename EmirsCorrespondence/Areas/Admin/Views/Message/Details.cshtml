@@ -1,0 +1,79 @@
+﻿@model DreyCorrespondence.Models.Message
+
+<h2>Message Details</h2>
+<p><strong>From:</strong> @Model.Sender.UserName</p>
+<p><strong>Subject:</strong> @Model.Subject</p>
+<p><strong>Message:</strong> @Model.Body</p>
+<p><strong>Sent:</strong> @Model.SentAt.ToString("f")</p>
+
+@if (Model.Attachments.Any())
+{
+    <h4>Attachments</h4>
+    <ul>
+        @foreach (var attachment in Model.Attachments)
+        {
+            <li>
+                <a href="@attachment.FilePath" target="_blank">@attachment.FileName</a>
+
+                @if (attachment.FileName.EndsWith(".jpg") || attachment.FileName.EndsWith(".png"))
+                {
+                    <br />
+                    <img src="@attachment.FilePath" alt="Attachment" style="max-width: 200px; margin-top: 10px;">
+                }
+                else if (attachment.FileName.EndsWith(".pdf"))
+                {
+                    <br />
+                    <iframe src="@attachment.FilePath" width="300" height="200"></iframe>
+                }
+            </li>
+        }
+    </ul>
+    <form asp-action="DeleteAttachment" method="post">
+        <input type="hidden" name="attachmentId"  />
+        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+    </form>
+
+    <progress id="uploadProgress" value="0" max="100" style="width: 100%; display: none;"></progress>
+
+
+    @* JavaScript for Drag & Drop *@
+   }
+<script>
+    let dropzone = document.getElementById('dropzone');
+    let fileInput = document.getElementById('fileInput');
+    let fileList = document.getElementById('fileList');
+
+    dropzone.addEventListener('click', () => fileInput.click());
+
+    dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.style.border = "2px dashed #007bff";
+    });
+
+    dropzone.addEventListener('dragleave', () => {
+        dropzone.style.border = "2px dashed #ccc";
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.style.border = "2px dashed #ccc";
+        let files = e.dataTransfer.files;
+        fileInput.files = files;
+
+        for (let file of files) {
+            let listItem = document.createElement('li');
+            listItem.textContent = file.name;
+            fileList.appendChild(listItem);
+        }
+    });
+</script>
+
+<style>
+    .dropzone {
+        border: 2px dashed #ccc;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+    }
+</style>
+

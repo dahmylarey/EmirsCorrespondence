@@ -1,0 +1,49 @@
+﻿
+@using EmirsCorrespondence.Data.DTO
+
+@{
+    ViewData["Title"] = "List of Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="container">
+    <div class="row">
+
+        @foreach (var uSerDto in Model)
+        {
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th >Username</th>
+                        <th >Email</th>
+                        <th>PasswordHash</th>
+                        <th>RoleName</th>
+                        <th>IsActive</th>RoleName
+                        <th>
+                            createdAt
+                        </th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>@Model.Username</td>
+                        <td>@Model.Email</td>
+                        <td>@Model.PasswordHash</td>
+                        <td>@Model.RoleName</td>
+                        <td>@Model.IsActive</td>
+                        <td>@Model.createdAt</td>
+                    </tr>
+                    
+                    
+                </tbody>
+            </table>
+        }
+
+    </div>
+
+</div>

@@ -1,0 +1,82 @@
+﻿@model DreyCorrespondence.Models.Message
+
+<h2>Compose Message</h2>
+<form asp-action="Compose" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Recipient</label>
+        <select asp-for="ReceiverId" asp-items="ViewBag.Users" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <label>Subject</label>
+        <input asp-for="Subject" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>Message</label>
+        <textarea asp-for="Body" class="form-control" required></textarea>
+    </div>
+    <div class="form-group">
+        <label>Attachments</label>
+        <input type="file" name="attachments" multiple class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Send</button>
+
+    @* Drag-and-Drop File Uploads *@
+    <div id="dropzone" class="dropzone">
+        <p>Drag & drop files here or click to select</p>
+        <input type="file" name="attachments" id="fileInput" multiple hidden>
+    </div>
+    <ul id="fileList"></ul>
+
+</form>
+<input type="file" name="attachments" id="fileInput" multiple class="form-control" />
+
+<p id="fileError" style="color: red; display: none;">Invalid file. Max size: 5MB. Allowed: .jpg, .png, .pdf, .docx</p>
+
+<progress id="uploadProgress" value="0" max="100" style="width: 100%; display: none;"></progress>
+
+<script>
+    document.getElementById("fileInput").addEventListener("change", function () {
+        let allowedExtensions = ['jpg', 'png', 'pdf', 'docx'];
+        let maxSize = 5 * 1024 * 1024; // 5MB
+        let fileError = document.getElementById("fileError");
+
+        for (let file of this.files) {
+            let fileExtension = file.name.split('.').pop().toLowerCase();
+            if (!allowedExtensions.includes(fileExtension) || file.size > maxSize) {
+                fileError.style.display = "block";
+                this.value = "";
+                return;
+            }
+        }
+        fileError.style.display = "none";
+    });
+</script>
+
+<script>
+    document.querySelector("form").addEventListener("submit", function (e) {
+        let files = document.getElementById("fileInput").files;
+        if (files.length === 0) return;
+
+        e.preventDefault();
+        let formData = new FormData(this);
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", this.action, true);
+
+        xhr.upload.onprogress = function (e) {
+            if (e.lengthComputable) {
+                let percentComplete = (e.loaded / e.total) * 100;
+                document.getElementById("uploadProgress").style.display = "block";
+                document.getElementById("uploadProgress").value = percentComplete;
+            }
+        };
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                location.reload();
+            }
+        };
+
+        xhr.send(formData);
+    });
+</script>

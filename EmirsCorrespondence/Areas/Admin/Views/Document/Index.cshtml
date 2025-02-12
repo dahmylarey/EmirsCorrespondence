@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Document Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>@ViewData["Title"]</h2>
+
+<div id="searchContainer">
+    <input type="text" id="searchInput" placeholder="Search documents..." onkeyup="filterDocuments()" />
+    <select id="categoryFilter" onchange="filterDocuments()">
+        <option value="">Select Category</option>
+        <option value="pdf">PDF</option>
+        <option value="docx">Word Document</option>
+        <option value="image">Images</option>
+    </select>
+</div>
+
+<ul id="documentList" class="document-list">
+    <!-- Dynamically generated list items -->
+</ul>
+
+<form method="get">
+    <input type="text" name="search" placeholder="Search documents..." />
+    <select name="filter">
+        <option value="">All</option>
+        <option value="Public">Public</option>
+        <option value="Private">Private</option>
+        <option value="RoleBased">Role-Based</option>
+        <option value="HR">HR</option>
+        <option value="Legal">Legal</option>
+    </select>
+
+    <select name="sort">
+        <option value="date_desc">Newest First</option>
+        <option value="date_asc">Oldest First</option>
+        <option value="size_desc">Largest First</option>
+        <option value="size_asc">Smallest First</option>
+    </select>
+    <button type="submit">Search</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+<script>
+    function generateShareLink(docId, expiry) {
+        fetch(`/Document/GenerateShareLink?documentId=${docId}&expiryHours=${expiry}`, { method: 'POST' })
+            .then(res => res.json())
+            .then(data => alert(`Share Link: ${data.link}`));
+    }
+</script>

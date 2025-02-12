@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Message>
+@using DreyCorrespondence.Models
+
+<h2>Inbox</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sender</th>
+            <th>Subject</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var msg in Model)
+        {
+            <tr>
+                <td>@msg.Sender.UserName</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@msg.MessageId">@msg.Subject</a>
+                    @(msg.IsRead ? "" : " (New)")
+                </td>
+                <td>@msg.SentAt.ToShortDateString()</td>
+                <td>
+                    <form asp-action="Delete" asp-route-id="@msg.MessageId" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

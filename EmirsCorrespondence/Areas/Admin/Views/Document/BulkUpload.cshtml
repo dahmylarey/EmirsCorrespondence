@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Bulk Uploads";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h3>Bulk Uploads</h3>
+
+<form id="uploadForm" enctype="multipart/form-data">
+    <div id="dropZone">
+        Drag & Drop files here or click to upload
+        <input type="file" id="fileInput" multiple />
+    </div>
+    <button type="submit">Upload</button>
+    <button type="button" id="cancelUpload" style="display:none;">Cancel</button>
+
+    <div id="progressContainer">
+        <div id="progressBar"></div>
+    </div>
+
+    <ul id="fileList"></ul>
+</form>
+
+<div id="notification"></div>
+
+

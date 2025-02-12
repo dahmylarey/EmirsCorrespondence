@@ -1,0 +1,211 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+#dropZone {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#dropZone.dragging {
+    background-color: #f0f0f0;
+}
+
+#progressContainer {
+    width: 100%;
+    background-color: #ddd;
+    margin-top: 10px;
+    height: 10px;
+    border-radius: 5px;
+}
+
+#progressBar {
+    width: 0%;
+    height: 100%;
+    background-color: #4caf50;
+    border-radius: 5px;
+}
+
+#notification {
+    margin-top: 10px;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+
+.success {
+    background-color: green;
+}
+
+.error {
+    background-color: red;
+}
+
+
+#dropZone {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#dropZone.dragging {
+    background-color: #f0f0f0;
+}
+
+
+/* Styling for Upload Section */
+.drop-zone {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.drop-zone span {
+    font-size: 16px;
+    color: #555;
+}
+
+.img-preview {
+    max-width: 100px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.preview-container {
+    display: flex;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.upload-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.upload-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cancel-button {
+    background-color: #FF6347;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.progress-container {
+    width: 100%;
+    background-color: #ddd;
+    margin-top: 10px;
+    height: 10px;
+    border-radius: 5px;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #4CAF50;
+    border-radius: 5px;
+}
+
+.notification {
+    margin-top: 20px;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.success {
+    background-color: green;
+}
+
+.error {
+    background-color: red;
+}
+
+
+/*Tooltips & Help Text*/
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #6c757d;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 25px;
+    left: 50%;
+    margin-left: -100px;
+}
+
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+}
+
+function showError(errorCode) {
+    let errorMessage = "";
+    switch (errorCode)
+
+{
+    case 400: errorMessage = "Invalid file format. Please upload a valid file.";
+    break;
+    case 500: errorMessage = "Server error. Please try again later.";
+    break;
+    default: errorMessage = "An unexpected error occurred.";
+    break;
+}
+
+showNotification(errorMessage, "error");
+}
+
+

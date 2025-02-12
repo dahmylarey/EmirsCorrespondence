@@ -1,0 +1,36 @@
+﻿@model IEnumerable<EmailTemplate>
+
+@{
+    ViewData["Title"] = "Email Templates";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Email Templates</h2>
+
+<a href="@Url.Action("Create")" class="btn btn-primary">Create New Template</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Subject</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var template in Model)
+        {
+            <tr>
+                <td>@template.TemplateName</td>
+                <td>@template.TemplateSubject</td>
+                <td>@template.TemplateType</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = template.Id })">Edit</a> |
+                    <a href="@Url.Action("Delete", new { id = template.Id })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

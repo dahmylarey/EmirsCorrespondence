@@ -1,0 +1,35 @@
+﻿
+}
+@model EmailTemplate
+
+
+@{
+    ViewData["Title"] = "Create Email Template";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Email Template</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="TemplateName">Emir's Email Template </label>
+        <input type="text" class="form-control" id="TemplateName" name="TemplateName" required />
+    </div>
+    <div class="form-group">
+        <label for="TemplateSubject">Subject</label>
+        <input type="text" class="form-control" id="TemplateSubject" name="TemplateSubject" required />
+    </div>
+    <div class="form-group">
+        <label for="TemplateBody">Body</label>
+        <textarea class="form-control" id="TemplateBody" name="TemplateBody" rows="5" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="TemplateType">Template Type</label>
+        <select class="form-control" id="TemplateType" name="TemplateType">
+            <option value="Reminder">Reminder</option>
+            <option value="Confirmation">Confirmation</option>
+            <option value="Announcement">Announcement</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
