@@ -9,9 +9,13 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\**" />
+    <Compile Remove="Data\Migrations\**" />
     <Content Remove="Controllers\**" />
+    <Content Remove="Data\Migrations\**" />
     <EmbeddedResource Remove="Controllers\**" />
+    <EmbeddedResource Remove="Data\Migrations\**" />
     <None Remove="Controllers\**" />
+    <None Remove="Data\Migrations\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,7 +45,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Migrations\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 
